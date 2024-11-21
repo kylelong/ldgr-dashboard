@@ -157,8 +157,6 @@ const AreaBump = () => {
           id: 'lines',
         },
       ]}
-      startLabel="id"
-      endLabel="id"
       axisTop={{
         tickSize: 5,
         tickPadding: 5,

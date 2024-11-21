@@ -62,7 +62,6 @@ const Marimekko = () => {
       innerPadding={9}
       axisTop={null}
       axisRight={{
-        orient: 'right',
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
@@ -71,7 +70,6 @@ const Marimekko = () => {
         truncateTickAt: 0,
       }}
       axisBottom={{
-        orient: 'bottom',
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
@@ -81,7 +79,6 @@ const Marimekko = () => {
         truncateTickAt: 0,
       }}
       axisLeft={{
-        orient: 'left',
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,

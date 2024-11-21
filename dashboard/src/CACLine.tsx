@@ -61,6 +61,7 @@ const CACLine = () => {
     <ResponsiveLine
       data={data}
       enableArea={true}
+      areaBlendMode="difference"
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
       curve="cardinal"
@@ -69,7 +70,7 @@ const CACLine = () => {
       enableGridY={false}
       areaOpacity={0.3}
       enableTouchCrosshair={true} // Enable touch crosshair
-      crosshairType="x"
+      crosshairType="cross"
       yScale={{
         type: 'linear',
         min: 0,
@@ -90,11 +91,6 @@ const CACLine = () => {
             value: match ? match.y : 0,
           }
         })
-
-        // Calculate total
-        const total = Number(
-          valuesForX.reduce((sum, item) => sum + item.value, 0),
-        ).toFixed(2)
 
         return (
           <div className="relative left-36 top-8 w-56 rounded border border-gray-300 bg-white p-2.5">
@@ -137,7 +133,15 @@ const CACLine = () => {
         legendPosition: 'middle',
         truncateTickAt: 0,
       }}
-      axisLeft={null}
+      axisLeft={{
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: 'cost',
+        legendOffset: -40,
+        legendPosition: 'middle',
+        truncateTickAt: 0,
+      }}
       pointSize={10}
       pointColor={{ theme: 'grid.line.stroke' }}
       pointBorderWidth={2}
