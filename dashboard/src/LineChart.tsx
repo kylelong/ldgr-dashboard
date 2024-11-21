@@ -1,8 +1,6 @@
 import { ResponsiveLine } from '@nivo/line'
 
 const LineChart = ({ data }: { data: any[] }) => {
-  console.log(data)
-
   return (
     <div className="h-96 rounded-md bg-white shadow-md">
       <ResponsiveLine

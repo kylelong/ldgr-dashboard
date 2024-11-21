@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline'
 import Button from './Button'
 import Pagination from './Pagination'
+import chart from './assets/bar-chart.png'
 
 const App = () => {
   const { data, loading } = useFetchData()
@@ -70,84 +71,107 @@ const App = () => {
   }
 
   return (
-    <div className="w-[1000px] space-y-3 p-4">
-      <div className="flex w-full justify-between rounded-md p-4 shadow-md">
-        <div className="flex flex-col">
-          <h5 className="text-lg font-bold text-gray-500">Runway</h5>
-          <div className="flex items-center">
-            <span className="text-lg font-bold text-green-600">$</span>
-            <h5 className="text-lg font-bold">3.4M</h5>
-            <div className="ml-1 flex items-center">
-              <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
-              <h5 className="text-sm font-bold text-red-400">8%</h5>
+    <>
+      <div className="h-24 w-screen rounded-sm bg-white p-4 shadow-md">
+        <div className="flex items-center justify-between">
+          <div>
+            <img src={chart} />
+            <div
+              className="text-lg"
+              style={{
+                fontFamily: "'Gaegu', sans-serif",
+                fontWeight: 700,
+                fontStyle: 'normal',
+                fontSize: '24px',
+              }}
+            >
+              Ldgr
             </div>
           </div>
-        </div>
-        <div>
-          <h5 className="text-lg font-bold text-gray-500">Burn Rate</h5>
-          <div className="flex">
-            <span className="text-lg font-bold text-green-600">$</span>
-            <h5 className="text-lg font-bold">
-              <span className="">572k</span>{' '}
-              <span className="text-sm text-gray-400">/yr</span>
-            </h5>
-            <div className="ml-1 flex items-center">
-              <ArrowDownRightIcon className="h-3 w-3 stroke-green-400" />
-              <h5 className="text-sm font-bold text-green-400">5%</h5>
-            </div>
+          <div className="h-10 w-10 rounded-full bg-blue-400 p-2 text-center text-white hover:cursor-pointer hover:opacity-75">
+            KL
           </div>
         </div>
-        <div>
-          <h5 className="text-lg font-bold text-gray-500">
-            Revenue Growth Rate
-          </h5>
-          <div className="flex space-x-2">
-            <div>
-              <h5 className="text-lg font-bold">10%</h5>
-            </div>
-            <div className="ml-1 flex items-center">
-              <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
-              <h5 className="text-sm font-bold text-green-400">30%</h5>
+      </div>
+      <div className="w-[1000px] space-y-3 p-4">
+        <div className="flex w-full justify-between rounded-md p-4 shadow-md">
+          <div className="flex flex-col">
+            <h5 className="text-lg font-bold text-gray-500">Runway</h5>
+            <div className="flex items-center">
+              <span className="text-lg font-bold text-green-600">$</span>
+              <h5 className="text-lg font-bold">3.4M</h5>
+              <div className="ml-1 flex items-center">
+                <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
+                <h5 className="text-sm font-bold text-red-400">8%</h5>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col">
-          <h5 className="text-lg font-bold text-gray-500">Churn</h5>
-          <div className="flex space-x-2">
+          <div>
+            <h5 className="text-lg font-bold text-gray-500">Burn Rate</h5>
             <div className="flex">
-              <h5 className="text-lg font-bold">2%</h5>
+              <span className="text-lg font-bold text-green-600">$</span>
+              <h5 className="text-lg font-bold">
+                <span className="">572k</span>{' '}
+                <span className="text-sm text-gray-400">/yr</span>
+              </h5>
+              <div className="ml-1 flex items-center">
+                <ArrowDownRightIcon className="h-3 w-3 stroke-green-400" />
+                <h5 className="text-sm font-bold text-green-400">5%</h5>
+              </div>
             </div>
-            <div className="ml-1 flex items-center">
-              <ArrowUpRightIcon className="h-3 w-3 stroke-red-400" />
-              <h5 className="text-sm font-bold text-red-400">0.5%</h5>
+          </div>
+          <div>
+            <h5 className="text-lg font-bold text-gray-500">
+              Revenue Growth Rate
+            </h5>
+            <div className="flex space-x-2">
+              <div>
+                <h5 className="text-lg font-bold">10%</h5>
+              </div>
+              <div className="ml-1 flex items-center">
+                <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
+                <h5 className="text-sm font-bold text-green-400">30%</h5>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <h5 className="text-lg font-bold text-gray-500">Churn</h5>
+            <div className="flex space-x-2">
+              <div className="flex">
+                <h5 className="text-lg font-bold">2%</h5>
+              </div>
+              <div className="ml-1 flex items-center">
+                <ArrowUpRightIcon className="h-3 w-3 stroke-red-400" />
+                <h5 className="text-sm font-bold text-red-400">0.5%</h5>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex items-center justify-center space-x-3">
-        <div className="flex w-12 justify-center rounded-md bg-gray-100 p-2">
-          <IconDisplay icon={headers[index - 1].img} />
+        <div className="flex items-center justify-center space-x-3">
+          <div className="flex w-12 justify-center rounded-md bg-gray-100 p-2">
+            <IconDisplay icon={headers[index - 1].img} />
+          </div>
+          <h3 className="text-center text-2xl font-bold">
+            {headers[index - 1].header}
+          </h3>
         </div>
-        <h3 className="text-center text-2xl font-bold">
-          {headers[index - 1].header}
-        </h3>
+        {loading ? (
+          <p className="text-center">Loading data...</p>
+        ) : (
+          <LineChart data={data} />
+        )}
+        <div className="flex flex-col items-center">
+          <div className="mt-4">
+            <Pagination currentPage={index} totalDots={TOTAL_PAGES} />
+          </div>
+          <div className="mt-2 flex justify-center">
+            <Button text="Prev" action={() => handleClick('prev')} />
+            <Button text="Next" action={() => handleClick('next')} />
+          </div>
+        </div>
       </div>
-      {loading ? (
-        <p className="text-center">Loading data...</p>
-      ) : (
-        <LineChart data={data} />
-      )}
-      <div className="flex flex-col items-center">
-        <div className="mt-4">
-          <Pagination currentPage={index} totalDots={TOTAL_PAGES} />
-        </div>
-        <div className="mt-2 flex justify-center">
-          <Button text="Prev" action={() => handleClick('prev')} />
-          <Button text="Next" action={() => handleClick('next')} />
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 
