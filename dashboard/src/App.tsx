@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LineChart from './LineChart'
 import CACLine from './CACLine'
 import Pie from './Pie'
@@ -7,6 +7,7 @@ import Marimekko from './Marimekko'
 import useFetchData from './useFetchData'
 import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
 import { ArrowDownRightIcon } from '@heroicons/react/24/solid'
+import NumberFlow from '@number-flow/react'
 import {
   ShoppingBagIcon,
   CurrencyDollarIcon,
@@ -21,6 +22,30 @@ import chart from './assets/bar-chart.png'
 const App = () => {
   const { data, loading } = useFetchData()
   const [index, setIndex] = useState<number>(0)
+  type Numbers = {
+    runway: number
+    burn: number
+    growthRate: number
+    churn: number
+  }
+  const [numbers, setNumbers] = useState<Numbers>({
+    runway: 0,
+    burn: 0,
+    growthRate: 0,
+    churn: 0,
+  })
+  const getRandomNumber = (min: number, max: number): number => {
+    return Math.random() * (max - min) + min
+  }
+
+  const updateNumbers = () => {
+    setNumbers({
+      runway: parseFloat(getRandomNumber(2.1, 5.9).toFixed(1)),
+      burn: Math.floor(getRandomNumber(217, 650)),
+      growthRate: Math.floor(getRandomNumber(5, 30)),
+      churn: Math.floor(getRandomNumber(1, 7)),
+    })
+  }
   const TOTAL_PAGES = 5
 
   type Icon = React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -79,6 +104,9 @@ const App = () => {
       return prevIndex
     })
   }
+  useEffect(() => {
+    updateNumbers()
+  }, [index])
 
   return (
     <div className="flex w-screen flex-col items-center">
@@ -109,7 +137,10 @@ const App = () => {
             <h5 className="text-lg font-bold text-gray-500">Runway</h5>
             <div className="flex items-center">
               <span className="text-lg font-bold text-green-600">$</span>
-              <h5 className="text-lg font-bold">3.4M</h5>
+              <h5 className="text-lg font-bold">
+                <NumberFlow value={numbers.runway} />M
+              </h5>
+
               <div className="ml-1 flex items-center">
                 <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
                 <h5 className="text-sm font-bold text-red-400">8%</h5>
@@ -121,7 +152,9 @@ const App = () => {
             <div className="flex">
               <span className="text-lg font-bold text-green-600">$</span>
               <h5 className="text-lg font-bold">
-                <span className="">572k</span>{' '}
+                <span className="">
+                  <NumberFlow value={numbers.burn} />k
+                </span>{' '}
                 <span className="text-sm text-gray-400">/yr</span>
               </h5>
               <div className="ml-1 flex items-center">
@@ -136,7 +169,9 @@ const App = () => {
             </h5>
             <div className="flex space-x-2">
               <div>
-                <h5 className="text-lg font-bold">10%</h5>
+                <h5 className="text-lg font-bold">
+                  <NumberFlow value={numbers.growthRate} />%
+                </h5>
               </div>
               <div className="ml-1 flex items-center">
                 <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
@@ -148,7 +183,9 @@ const App = () => {
             <h5 className="text-lg font-bold text-gray-500">Churn</h5>
             <div className="flex space-x-2">
               <div className="flex">
-                <h5 className="text-lg font-bold">2%</h5>
+                <h5 className="text-lg font-bold">
+                  <NumberFlow value={numbers.churn} />%
+                </h5>
               </div>
               <div className="ml-1 flex items-center">
                 <ArrowUpRightIcon className="h-3 w-3 stroke-red-400" />

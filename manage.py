@@ -9,6 +9,8 @@ def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
     try:
         from django.core.management import execute_from_command_line
+        port = os.getenv('PORT', '8000')  # Default to 8000 if PORT is not set
+        execute_from_command_line(['manage.py', 'runserver', f'0.0.0.0:{port}'])
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
@@ -18,5 +20,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     main()

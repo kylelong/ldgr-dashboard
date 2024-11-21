@@ -66,7 +66,6 @@ const CACLine = () => {
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
       colors={['#9900FF']}
-      curve="cardinal"
       enableGridX={false} // Disable the x-axis grid lines
       enableGridY={false}
       areaOpacity={0.3}
