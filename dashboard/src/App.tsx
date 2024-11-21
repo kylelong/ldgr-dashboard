@@ -1,20 +1,25 @@
 import { useState, useEffect } from 'react'
 import LineChart from './LineChart'
-import CACLine from './CACLine'
+import CACLine from './CACLineChart'
 import Pie from './Pie'
 import AreaBump from './AreaBump'
 import Marimekko from './Marimekko'
+import Choropleth from './Choropleth'
+import ChurnBar from './ChurnBar'
+import RevenueGrowthChart from './ReveneGrowthChart'
 import useFetchData from './useFetchData'
-import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
-import { ArrowDownRightIcon } from '@heroicons/react/24/solid'
-import NumberFlow from '@number-flow/react'
+import { ArrowUpRightIcon, ArrowDownRightIcon } from '@heroicons/react/24/solid'
 import {
   ShoppingBagIcon,
   CurrencyDollarIcon,
   BanknotesIcon,
   NumberedListIcon,
   UserPlusIcon,
+  GlobeAsiaAustraliaIcon,
+  UserMinusIcon,
+  ArrowTrendingUpIcon,
 } from '@heroicons/react/24/outline'
+import NumberFlow from '@number-flow/react'
 import Button from './Button'
 import Pagination from './Pagination'
 import chart from './assets/bar-chart.png'
@@ -23,14 +28,14 @@ const App = () => {
   const { data, loading } = useFetchData()
   const [index, setIndex] = useState<number>(0)
   type Numbers = {
-    runway: number
-    burn: number
+    arr: number
+    customers: number
     growthRate: number
     churn: number
   }
   const [numbers, setNumbers] = useState<Numbers>({
-    runway: 0,
-    burn: 0,
+    arr: 0,
+    customers: 0,
     growthRate: 0,
     churn: 0,
   })
@@ -40,13 +45,12 @@ const App = () => {
 
   const updateNumbers = () => {
     setNumbers({
-      runway: parseFloat(getRandomNumber(2.1, 5.9).toFixed(1)),
-      burn: Math.floor(getRandomNumber(217, 650)),
+      arr: parseFloat(getRandomNumber(10.1, 100.0).toFixed(1)),
+      customers: Math.floor(getRandomNumber(25000, 100000)),
       growthRate: Math.floor(getRandomNumber(5, 30)),
-      churn: Math.floor(getRandomNumber(1, 7)),
+      churn: parseFloat(getRandomNumber(2.0, 10.0).toFixed(1)),
     })
   }
-  const TOTAL_PAGES = 5
 
   type Icon = React.ComponentType<React.SVGProps<SVGSVGElement>>
 
@@ -72,6 +76,26 @@ const App = () => {
       chart: <LineChart data={data} />,
     },
     {
+      img: UserMinusIcon,
+      header: 'Churn',
+      chart: <ChurnBar />,
+    },
+    {
+      img: ArrowTrendingUpIcon,
+      header: 'Revenue Growth Rate',
+      chart: <RevenueGrowthChart />,
+    },
+    {
+      img: GlobeAsiaAustraliaIcon, // Store the component here - line chart
+      header: 'Worldwide Customers',
+      chart: <Choropleth />,
+    },
+    {
+      img: UserPlusIcon, // Store the component here - line chart
+      header: 'Customer Acquisition Cost',
+      chart: <CACLine />,
+    },
+    {
       img: ShoppingBagIcon, // https://nivo.rocks/pie/
       header: 'Expenses',
       chart: <Pie />,
@@ -86,12 +110,9 @@ const App = () => {
       header: 'Margins',
       chart: <Marimekko />,
     },
-    {
-      img: UserPlusIcon, // Store the component here - line chart
-      header: 'Customer Acquisition Cost',
-      chart: <CACLine />,
-    },
   ]
+
+  const TOTAL_PAGES = headers.length
 
   const handleClick = (direction: 'prev' | 'next') => {
     setIndex((prevIndex) => {
@@ -126,40 +147,45 @@ const App = () => {
               Ldgr
             </div>
           </div>
-          <div className="h-10 w-10 rounded-full bg-blue-400 p-2 text-center text-white hover:cursor-pointer hover:opacity-75">
-            KL
+          <div
+            style={{
+              fontFamily: "'Gaegu', sans-serif",
+              fontWeight: 700,
+              fontStyle: 'normal',
+            }}
+            className="flex h-10 w-10 items-center rounded-full bg-blue-400 p-3 text-3xl text-white hover:cursor-pointer hover:opacity-75"
+          >
+            K
           </div>
         </div>
       </div>
       <div className="w-[1000px] space-y-3 p-4">
         <div className="flex w-full justify-between rounded-md p-4 shadow-md">
           <div className="flex flex-col">
-            <h5 className="text-lg font-bold text-gray-500">Runway</h5>
+            <h5 className="text-lg font-bold text-gray-500">ARR</h5>
             <div className="flex items-center">
               <span className="text-lg font-bold text-green-600">$</span>
               <h5 className="text-lg font-bold">
-                <NumberFlow value={numbers.runway} />M
+                <NumberFlow value={numbers.arr} />M
               </h5>
 
               <div className="ml-1 flex items-center">
-                <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
-                <h5 className="text-sm font-bold text-red-400">8%</h5>
+                <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
+                <h5 className="text-sm font-bold text-green-400">8%</h5>
               </div>
             </div>
           </div>
           <div>
-            <h5 className="text-lg font-bold text-gray-500">Burn Rate</h5>
+            <h5 className="text-lg font-bold text-gray-500">Customers</h5>
             <div className="flex">
-              <span className="text-lg font-bold text-green-600">$</span>
               <h5 className="text-lg font-bold">
                 <span className="">
-                  <NumberFlow value={numbers.burn} />k
+                  <NumberFlow value={numbers.customers} />
                 </span>{' '}
-                <span className="text-sm text-gray-400">/yr</span>
               </h5>
               <div className="ml-1 flex items-center">
-                <ArrowDownRightIcon className="h-3 w-3 stroke-green-400" />
-                <h5 className="text-sm font-bold text-green-400">5%</h5>
+                <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
+                <h5 className="text-sm font-bold text-red-400">5%</h5>
               </div>
             </div>
           </div>
@@ -175,7 +201,7 @@ const App = () => {
               </div>
               <div className="ml-1 flex items-center">
                 <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
-                <h5 className="text-sm font-bold text-green-400">30%</h5>
+                <h5 className="text-sm font-bold text-green-400">32%</h5>
               </div>
             </div>
           </div>
@@ -189,7 +215,7 @@ const App = () => {
               </div>
               <div className="ml-1 flex items-center">
                 <ArrowUpRightIcon className="h-3 w-3 stroke-red-400" />
-                <h5 className="text-sm font-bold text-red-400">0.5%</h5>
+                <h5 className="text-sm font-bold text-red-400">1.7%</h5>
               </div>
             </div>
           </div>

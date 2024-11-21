@@ -7,57 +7,57 @@ const data = [
     data: [
       {
         x: 'Jan',
-        y: 1450,
+        y: 2,
       },
       {
         x: 'Feb',
-        y: 1010,
+        y: 2.7,
       },
       {
         x: 'Mar',
-        y: 1430,
+        y: 5,
       },
       {
         x: 'Apr',
-        y: 2400,
+        y: 3,
       },
       {
         x: 'May',
-        y: 1300,
+        y: 7,
       },
       {
         x: 'June',
-        y: 1210,
+        y: 10,
       },
       {
         x: 'July',
-        y: 2770,
+        y: 6,
       },
       {
         x: 'Aug',
-        y: 1840,
+        y: 8,
       },
       {
         x: 'Sept',
-        y: 1680,
+        y: 12,
       },
       {
         x: 'Oct',
-        y: 1900,
+        y: 7,
       },
       {
         x: 'Nov',
-        y: 2190,
+        y: 9,
       },
       {
         x: 'Dec',
-        y: 1670,
+        y: 10,
       },
     ],
   },
 ]
 
-const CACLine = () => {
+const RevenueGrowthChart = () => {
   return (
     <ResponsiveLine
       data={data}
@@ -132,10 +132,8 @@ const CACLine = () => {
                         }}
                         className="h-3 w-3 rounded-full"
                       ></span>
-                      <span className="">${value}</span>
+                      <span className="">{value}%</span>
                     </div>
-
-                    <span className="font-semibold text-gray-500">{id}</span>
                   </li>
                 )
               })}
@@ -150,7 +148,7 @@ const CACLine = () => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'ARR',
+        legend: 'Revenue Growth %',
         legendOffset: 36,
         legendPosition: 'middle',
         truncateTickAt: 0,
@@ -159,7 +157,7 @@ const CACLine = () => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'cost',
+        legend: 'percentage',
         legendOffset: -40,
         legendPosition: 'middle',
         truncateTickAt: 0,
@@ -177,4 +175,4 @@ const CACLine = () => {
   )
 }
 
-export default CACLine
+export default RevenueGrowthChart
