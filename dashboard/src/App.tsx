@@ -1,125 +1,73 @@
-import React from 'react'
+import { useState } from 'react'
 import LineChart from './LineChart'
 import useFetchData from './useFetchData'
-import { ResponsiveBar } from '@nivo/bar'
 import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
 import { ArrowDownRightIcon } from '@heroicons/react/24/solid'
-import { BanknotesIcon } from '@heroicons/react/24/outline'
+import {
+  ShoppingBagIcon,
+  CurrencyDollarIcon,
+  BanknotesIcon,
+  NumberedListIcon,
+  UserPlusIcon,
+} from '@heroicons/react/24/outline'
 import Button from './Button'
+import Pagination from './Pagination'
 
 const App = () => {
-  // const { data, loading } = useFetchData()
+  const { data, loading } = useFetchData()
+  const [index, setIndex] = useState<number>(1)
+  const TOTAL_PAGES = 5
 
-  const data = [
+  type Icon = React.ComponentType<React.SVGProps<SVGSVGElement>>
+
+  type HeaderData = {
+    img: Icon
+    header: string
+  }
+
+  interface IconProps {
+    icon: Icon
+  }
+
+  const IconDisplay: React.FC<IconProps> = ({ icon: Icon }) => {
+    return <Icon className="h-7 w-7" />
+  }
+
+  // Store the component, not the JSX element
+  const headers: HeaderData[] = [
     {
-      id: 'Yearly',
-      color: 'hsl(220, 60%, 40%)',
-      data: [
-        {
-          x: 'Jan',
-          y: 150,
-        },
-        {
-          x: 'Feb',
-          y: 115,
-        },
-        {
-          x: 'Mar',
-          y: 175,
-        },
-        {
-          x: 'Apr',
-          y: 248,
-        },
-        {
-          x: 'May',
-          y: 160,
-        },
-        {
-          x: 'June',
-          y: 121,
-        },
-        {
-          x: 'July',
-          y: 277,
-        },
-        {
-          x: 'Aug',
-          y: 184,
-        },
-        {
-          x: 'Sept',
-          y: 168,
-        },
-        {
-          x: 'Oct',
-          y: 34,
-        },
-        {
-          x: 'Nov',
-          y: 189,
-        },
-        {
-          x: 'Dec',
-          y: 217,
-        },
-      ],
+      img: BanknotesIcon, // Store the component here
+      header: 'Annual Recurring Revenue',
     },
     {
-      id: 'Monthly',
-      color: 'hsl(205 100% 50%)',
-      data: [
-        {
-          x: 'Jan',
-          y: 120,
-        },
-        {
-          x: 'Feb',
-          y: 101,
-        },
-        {
-          x: 'Mar',
-          y: 143,
-        },
-        {
-          x: 'Apr',
-          y: 210,
-        },
-        {
-          x: 'May',
-          y: 130,
-        },
-        {
-          x: 'June',
-          y: 121,
-        },
-        {
-          x: 'July',
-          y: 277,
-        },
-        {
-          x: 'Aug',
-          y: 184,
-        },
-        {
-          x: 'Sept',
-          y: 168,
-        },
-        {
-          x: 'Oct',
-          y: 34,
-        },
-        {
-          x: 'Nov',
-          y: 189,
-        },
-        {
-          x: 'Dec',
-          y: 217,
-        },
-      ],
+      img: ShoppingBagIcon, // https://nivo.rocks/pie/
+      header: 'Expenses',
+    },
+    {
+      img: CurrencyDollarIcon, // https://nivo.rocks/area-bump/
+      header: 'Cash Flow',
+    },
+    {
+      img: NumberedListIcon, // stack bar chart - https://nivo.rocks/marimekko/
+      header: 'Margins',
+    },
+    {
+      img: UserPlusIcon, // Store the component here - line chart
+      header: 'Customer Acquisition Cost',
     },
   ]
+
+  const handleClick = (direction: 'prev' | 'next') => {
+    setIndex((prevIndex) => {
+      if (direction === 'prev') {
+        return prevIndex === 1 ? TOTAL_PAGES : prevIndex - 1
+      }
+      if (direction === 'next') {
+        return prevIndex === TOTAL_PAGES ? 1 : prevIndex + 1
+      }
+      return prevIndex
+    })
+  }
 
   return (
     <div className="w-[1000px] space-y-3 p-4">
@@ -179,20 +127,25 @@ const App = () => {
 
       <div className="flex items-center justify-center space-x-3">
         <div className="flex w-12 justify-center rounded-md bg-gray-100 p-2">
-          <BanknotesIcon className="h-7 w-7" />
+          <IconDisplay icon={headers[index - 1].img} />
         </div>
         <h3 className="text-center text-2xl font-bold">
-          Annual Recurring Revenue
+          {headers[index - 1].header}
         </h3>
       </div>
-      {false ? (
+      {loading ? (
         <p className="text-center">Loading data...</p>
       ) : (
         <LineChart data={data} />
       )}
-      <div className="flex justify-center">
-        <Button text="Prev" />
-        <Button text="Next" />
+      <div className="flex flex-col items-center">
+        <div className="mt-4">
+          <Pagination currentPage={index} totalDots={TOTAL_PAGES} />
+        </div>
+        <div className="mt-2 flex justify-center">
+          <Button text="Prev" action={() => handleClick('prev')} />
+          <Button text="Next" action={() => handleClick('next')} />
+        </div>
       </div>
     </div>
   )

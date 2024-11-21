@@ -1,17 +1,7 @@
-// import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
 const LineChart = ({ data }: { data: any[] }) => {
   console.log(data)
-  // const formattedData = [
-  //   {
-  //     id: 'Revenue',
-  //     data: data.map((item) => ({
-  //       x: item.date,
-  //       y: item.amount,
-  //     })),
-  //   },
-  // ]
 
   return (
     <div className="h-96 rounded-md bg-white shadow-md">
@@ -51,7 +41,9 @@ const LineChart = ({ data }: { data: any[] }) => {
           })
 
           // Calculate total
-          const total = valuesForX.reduce((sum, item) => sum + item.value, 0)
+          const total = Number(
+            valuesForX.reduce((sum, item) => sum + item.value, 0),
+          ).toFixed(2)
 
           return (
             <div className="relative left-36 top-8 w-56 rounded border border-gray-300 bg-white p-2.5">
@@ -71,7 +63,7 @@ const LineChart = ({ data }: { data: any[] }) => {
                           }}
                           className="h-3 w-3 rounded-full"
                         ></span>
-                        <span className="">{value}</span>
+                        <span className="">${value}</span>
                       </div>
 
                       <span className="font-semibold text-gray-500">{id}</span>
@@ -84,7 +76,7 @@ const LineChart = ({ data }: { data: any[] }) => {
                   <span
                     className={`h-3 w-3 rounded-full bg-[${colors['Total']}]`}
                   ></span>
-                  <span>{total}</span>
+                  <span>${total}</span>
                 </div>
                 <strong>Total</strong>
               </div>
