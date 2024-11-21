@@ -24,7 +24,7 @@ const LineChart = ({ data }: { data: any[] }) => {
         }}
         tooltip={({ point }) => {
           // Extract data for the hovered x-axis value
-          const hoveredX = point.data.x // The current "x" value (e.g., "Sept")
+          const hoveredX = point.data.x as string // The current "x" value (e.g., "Sept")
           const colors = {
             Monthly: '#6CB4EE',
             Yearly: '#1560bd',
