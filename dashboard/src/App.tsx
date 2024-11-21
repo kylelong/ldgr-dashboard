@@ -71,7 +71,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <div className="flex w-screen flex-col items-center">
       <div className="h-24 w-screen bg-white p-4">
         <div className="flex items-center justify-between">
           <div>
@@ -171,7 +171,7 @@ const App = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
