@@ -72,7 +72,7 @@ const App = () => {
 
   return (
     <>
-      <div className="h-24 w-screen rounded-sm bg-white p-4 shadow-md">
+      <div className="h-24 w-screen bg-white p-4">
         <div className="flex items-center justify-between">
           <div>
             <img src={chart} />

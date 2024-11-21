@@ -11,11 +11,12 @@ const useFetchData = () => {
 
   const [data, setData] = useState<PaymentData[]>([])
   const [loading, setLoading] = useState<boolean>(true)
+  const url = import.meta.env.VITE_API_URL
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/stripe/')
+        const response = await axios.get(`${url}/stripe/`)
         setData(response.data)
       } catch (error) {
         console.error('Error fetching data:', error)

@@ -49,7 +49,7 @@ def get_csv_data(request):
     for month in month_order:
         monthly.append({
             'x': month[:3],  # Abbreviate month to 3 letters
-            'y': arr_data[month]['monthly'],
+            'y': round(arr_data[month]['monthly'], 2),
         })
         yearly.append({
             'x': month[:3],  # Abbreviate month to 3 letters
