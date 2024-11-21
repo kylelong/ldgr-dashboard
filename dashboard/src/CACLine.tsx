@@ -1,6 +1,62 @@
 import { ResponsiveLine } from '@nivo/line'
+const data = [
+  {
+    id: 'Monthly',
+    color: 'hsl(276.9, 100%, 50%)',
+    data: [
+      {
+        x: 'Jan',
+        y: 1450,
+      },
+      {
+        x: 'Feb',
+        y: 1010,
+      },
+      {
+        x: 'Mar',
+        y: 1430,
+      },
+      {
+        x: 'Apr',
+        y: 2400,
+      },
+      {
+        x: 'May',
+        y: 1300,
+      },
+      {
+        x: 'June',
+        y: 1210,
+      },
+      {
+        x: 'July',
+        y: 2770,
+      },
+      {
+        x: 'Aug',
+        y: 1840,
+      },
+      {
+        x: 'Sept',
+        y: 1680,
+      },
+      {
+        x: 'Oct',
+        y: 1900,
+      },
+      {
+        x: 'Nov',
+        y: 2190,
+      },
+      {
+        x: 'Dec',
+        y: 1670,
+      },
+    ],
+  },
+]
 
-const LineChart = ({ data }: { data: any[] }) => {
+const CACLine = () => {
   return (
     <ResponsiveLine
       data={data}
@@ -8,7 +64,7 @@ const LineChart = ({ data }: { data: any[] }) => {
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
       curve="cardinal"
-      colors={['#6CB4EE', '#1560bd']}
+      colors={['#9900FF']}
       enableGridX={false} // Disable the x-axis grid lines
       enableGridY={false}
       areaOpacity={0.3}
@@ -25,9 +81,7 @@ const LineChart = ({ data }: { data: any[] }) => {
         // Extract data for the hovered x-axis value
         const hoveredX = point.data.x as string // The current "x" value (e.g., "Sept")
         const colors = {
-          Monthly: '#6CB4EE',
-          Yearly: '#1560bd',
-          Total: '#dddddd',
+          Monthly: '#9900FF',
         }
         const valuesForX = data.map((serie) => {
           const match = serie.data.find((d: any) => d.x === hoveredX)
@@ -51,7 +105,7 @@ const LineChart = ({ data }: { data: any[] }) => {
                 return (
                   <li
                     key={id}
-                    className="my-2 flex list-none items-center justify-between border-b border-gray-200"
+                    className="my-2 flex list-none items-center justify-between border-gray-200"
                   >
                     <div className="flex items-center space-x-2">
                       <span
@@ -68,15 +122,6 @@ const LineChart = ({ data }: { data: any[] }) => {
                 )
               })}
             </ul>
-            <div className="flex justify-between">
-              <div className="flex items-center space-x-2">
-                <span
-                  className={`h-3 w-3 rounded-full bg-[${colors['Total']}]`}
-                ></span>
-                <span>${total}</span>
-              </div>
-              <strong>Total</strong>
-            </div>
           </div>
         )
       }}
@@ -106,4 +151,4 @@ const LineChart = ({ data }: { data: any[] }) => {
   )
 }
 
-export default LineChart
+export default CACLine

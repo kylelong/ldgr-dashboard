@@ -12,7 +12,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalDots }) => {
         <div
           key={index}
           className={`h-3 w-3 rounded-full ${
-            currentPage > index ? 'bg-green-500' : 'bg-gray-200'
+            currentPage >= index ? 'bg-green-500' : 'bg-gray-200'
           }`}
         />
       ))}

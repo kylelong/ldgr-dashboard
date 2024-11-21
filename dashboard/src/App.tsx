@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import LineChart from './LineChart'
+import CACLine from './CACLine'
+import Pie from './Pie'
+import AreaBump from './AreaBump'
+import Marimekko from './Marimekko'
 import useFetchData from './useFetchData'
 import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
 import { ArrowDownRightIcon } from '@heroicons/react/24/solid'
@@ -16,7 +20,7 @@ import chart from './assets/bar-chart.png'
 
 const App = () => {
   const { data, loading } = useFetchData()
-  const [index, setIndex] = useState<number>(1)
+  const [index, setIndex] = useState<number>(0)
   const TOTAL_PAGES = 5
 
   type Icon = React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -24,6 +28,7 @@ const App = () => {
   type HeaderData = {
     img: Icon
     header: string
+    chart: any
   }
 
   interface IconProps {
@@ -39,32 +44,37 @@ const App = () => {
     {
       img: BanknotesIcon, // Store the component here
       header: 'Annual Recurring Revenue',
+      chart: <LineChart data={data} />,
     },
     {
       img: ShoppingBagIcon, // https://nivo.rocks/pie/
       header: 'Expenses',
+      chart: <Pie />,
     },
     {
       img: CurrencyDollarIcon, // https://nivo.rocks/area-bump/
       header: 'Cash Flow',
+      chart: <AreaBump />,
     },
     {
       img: NumberedListIcon, // stack bar chart - https://nivo.rocks/marimekko/
       header: 'Margins',
+      chart: <Marimekko />,
     },
     {
       img: UserPlusIcon, // Store the component here - line chart
       header: 'Customer Acquisition Cost',
+      chart: <CACLine />,
     },
   ]
 
   const handleClick = (direction: 'prev' | 'next') => {
     setIndex((prevIndex) => {
       if (direction === 'prev') {
-        return prevIndex === 1 ? TOTAL_PAGES : prevIndex - 1
+        return prevIndex === 0 ? TOTAL_PAGES - 1 : prevIndex - 1
       }
       if (direction === 'next') {
-        return prevIndex === TOTAL_PAGES ? 1 : prevIndex + 1
+        return prevIndex === TOTAL_PAGES - 1 ? 0 : prevIndex + 1
       }
       return prevIndex
     })
@@ -150,16 +160,18 @@ const App = () => {
 
         <div className="flex items-center justify-center space-x-3">
           <div className="flex w-12 justify-center rounded-md bg-gray-100 p-2">
-            <IconDisplay icon={headers[index - 1].img} />
+            <IconDisplay icon={headers[index].img} />
           </div>
           <h3 className="text-center text-2xl font-bold">
-            {headers[index - 1].header}
+            {headers[index].header}
           </h3>
         </div>
         {loading ? (
           <p className="text-center">Loading data...</p>
         ) : (
-          <LineChart data={data} />
+          <div className="h-96 rounded-md bg-white shadow-md">
+            {headers[index].chart}
+          </div>
         )}
         <div className="flex flex-col items-center">
           <div className="mt-4">
