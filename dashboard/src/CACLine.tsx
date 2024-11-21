@@ -1,4 +1,5 @@
 import { ResponsiveLine } from '@nivo/line'
+import { patternDotsDef, patternSquaresDef } from '@nivo/core'
 const data = [
   {
     id: 'Monthly',
@@ -61,16 +62,38 @@ const CACLine = () => {
     <ResponsiveLine
       data={data}
       enableArea={true}
-      areaBlendMode="difference"
+      areaBlendMode="darken"
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
-      curve="cardinal"
       colors={['#9900FF']}
+      curve="cardinal"
       enableGridX={false} // Disable the x-axis grid lines
       enableGridY={false}
       areaOpacity={0.3}
       enableTouchCrosshair={true} // Enable touch crosshair
       crosshairType="cross"
+      defs={[
+        // using helpers (cannot be used with http rendering API)
+        // will use color from current element
+        patternDotsDef('dots', { color: 'inherit' }),
+        // will use background color from current element
+        patternSquaresDef('squares', { background: 'inherit' }),
+        // using plain object
+        { id: 'custom', type: 'patternSquares', size: 24 },
+      ]}
+      // 2. defining rules to apply those patterns
+      fill={[
+        // match using query object
+        // (can be used with http rendering API
+        { match: { id: 'react' }, id: 'dots' },
+        // match using function
+        // (cannot be used with http rendering API
+        { match: (d) => d.id === 'vue', id: 'squares' },
+        // match all, will only affect 'elm' because once
+        // a rule match, others are skipped
+        // (can be used with http rendering API
+        { match: '*', id: 'dots' },
+      ]}
       yScale={{
         type: 'linear',
         min: 0,
