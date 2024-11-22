@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
-import LineChart from './LineChart'
-import CACLine from './CACLineChart'
-import Pie from './Pie'
-import AreaBump from './AreaBump'
-import Marimekko from './Marimekko'
-import Choropleth from './Choropleth'
-import ChurnBar from './ChurnBar'
-import RevenueGrowthChart from './ReveneGrowthChart'
-import TopCustomers from './TopCustomers'
-import useFetchData from './useFetchData'
+import LineChart from '@/components/charts/LineChart'
+import CACLine from '@/components/charts/CACLineChart'
+import Pie from '@/components/charts/Pie'
+import AreaBump from '@/components/charts/AreaBump'
+import Marimekko from '@/components/charts/Marimekko'
+import Choropleth from '@/components/charts/Choropleth'
+import ChurnBar from '@/components/charts/ChurnBar'
+import RevenueGrowthChart from '@/components/charts/ReveneGrowthChart'
+import TopCustomers from '@/components/charts/TopCustomers'
+import useFetchData from '@/useFetchData'
 import { ArrowUpRightIcon, ArrowDownRightIcon } from '@heroicons/react/24/solid'
 import {
   ShoppingBagIcon,
@@ -21,9 +21,9 @@ import {
   ArrowTrendingUpIcon,
 } from '@heroicons/react/24/outline'
 import NumberFlow from '@number-flow/react'
-import Button from './Button'
-import Pagination from './Pagination'
-import chart from './assets/bar-chart.png'
+import Button from '@/components/Button'
+import Pagination from '@/components/Pagination'
+import chart from '@/assets/bar-chart.png'
 
 const App = () => {
   const { data, loading } = useFetchData()

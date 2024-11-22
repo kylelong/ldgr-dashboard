@@ -1,7 +1,7 @@
 // install (please try to align the version of installed @nivo packages)
 // yarn add @nivo/geo
 import { ResponsiveChoropleth } from '@nivo/geo'
-import features from './world_countries'
+import features from '@/world_countries'
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -711,60 +711,6 @@ const Choropleth = () => {
       graticuleLineColor="#dddddd"
       borderWidth={0.5}
       borderColor="#152538"
-      defs={[
-        {
-          id: 'dots',
-          type: 'patternDots',
-          background: 'inherit',
-          color: '#38bcb2',
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: 'lines',
-          type: 'patternLines',
-          background: 'inherit',
-          color: '#eed312',
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-        {
-          id: 'gradient',
-          type: 'linearGradient',
-          colors: [
-            {
-              offset: 0,
-              color: '#000',
-            },
-            {
-              offset: 100,
-              color: 'inherit',
-            },
-          ],
-        },
-      ]}
-      fill={[
-        {
-          match: {
-            id: 'CAN',
-          },
-          id: 'dots',
-        },
-        {
-          match: {
-            id: 'CHN',
-          },
-          id: 'lines',
-        },
-        {
-          match: {
-            id: 'ATA',
-          },
-          id: 'gradient',
-        },
-      ]}
       legends={[
         {
           anchor: 'bottom-left',

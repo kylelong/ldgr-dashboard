@@ -1,4 +1,4 @@
-import heart from './assets/heart.png'
+import heart from '@/assets/heart.png'
 const TopCustomers = () => {
   type Customer = {
     name: string
