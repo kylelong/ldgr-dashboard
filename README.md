@@ -39,7 +39,7 @@ The **`ARR`** graph is the only graph with curated data. The data comes from `st
 ![Screen Shot 2024-11-22 at 12 11 54 AM](https://github.com/user-attachments/assets/1bcc56e8-b937-415e-a319-c9084677e4e9)
 ![Screen Shot 2024-11-21 at 9 27 52 PM](https://github.com/user-attachments/assets/5040092e-cf06-47f5-ad1d-799952055bf7)
 ![Screen Shot 2024-11-21 at 9 30 45 PM](https://github.com/user-attachments/assets/de26aef5-0e02-45b9-b5be-7a024be16c1b)
-![Screen Shot 2024-11-21 at 9 30 57 PM](https://github.com/user-attachments/assets/2cd134b7-64c4-4b9c-8742-a8c62eed6084)
+![Screen Shot 2024-11-22 at 12 33 14 AM](https://github.com/user-attachments/assets/e57ea091-2411-465b-a332-0cd7b3b18329)
 ![Screen Shot 2024-11-21 at 9 31 07 PM](https://github.com/user-attachments/assets/dd90ffc5-2a4d-4239-a9af-064f80fc2b1e)
 ![Screen Shot 2024-11-21 at 9 31 24 PM](https://github.com/user-attachments/assets/136d55ac-cd18-40ae-85c9-2cd00c959d47)
 ![Screen Shot 2024-11-21 at 9 31 35 PM](https://github.com/user-attachments/assets/b9e01a55-220d-495b-80b0-c429362fbdc7)
