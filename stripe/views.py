@@ -7,14 +7,13 @@ def get_csv_data(request):
     csv_path = os.path.join(settings.BASE_DIR, "stripe/static/data/stripe_payments.csv")
     df = pd.read_csv(csv_path)
     
-    # Convert start_date to datetime
     df['start_date'] = pd.to_datetime(df['start_date'])
     
     # Extract the month and year for grouping
     df['month'] = df['start_date'].dt.month_name()
     df['year'] = df['start_date'].dt.year
     
-    # Define the month order
+
     month_order = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
@@ -45,18 +44,21 @@ def get_csv_data(request):
     # Convert the aggregated ARR data into the required structure
     monthly = []
     yearly = []
+
+    # Abbreviate month to 3 letters
     
     for month in month_order:
         monthly.append({
-            'x': month[:3],  # Abbreviate month to 3 letters
+            'x': month[:3],  
             'y': round(arr_data[month]['monthly'], 2),
         })
         yearly.append({
-            'x': month[:3],  # Abbreviate month to 3 letters
+            'x': month[:3],  
             'y': round(arr_data[month]['yearly'], 2),
         })
 
-    # Construct the final data in the required format
+    # Final order 
+    
     data = [
         {
             'id': 'Yearly',
