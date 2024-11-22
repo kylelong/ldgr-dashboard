@@ -1,5 +1,5 @@
 import { ResponsiveLine } from '@nivo/line'
-import { patternDotsDef, patternSquaresDef } from '@nivo/core'
+import { patternDotsDef, patternSquaresDef, patternLinesDef } from '@nivo/core'
 const data = [
   {
     id: 'Monthly',
@@ -7,51 +7,51 @@ const data = [
     data: [
       {
         x: 'Jan',
-        y: 2,
+        y: 20,
       },
       {
         x: 'Feb',
-        y: 2.7,
+        y: 20.7,
       },
       {
         x: 'Mar',
-        y: 5,
+        y: 15,
       },
       {
         x: 'Apr',
-        y: 3,
+        y: 13,
       },
       {
         x: 'May',
-        y: 7,
+        y: 17,
       },
       {
         x: 'June',
-        y: 10,
+        y: 20,
       },
       {
         x: 'July',
-        y: 6,
+        y: 26,
       },
       {
         x: 'Aug',
-        y: 8,
+        y: 28,
       },
       {
         x: 'Sept',
-        y: 12,
+        y: 22,
       },
       {
         x: 'Oct',
-        y: 7,
+        y: 27,
       },
       {
         x: 'Nov',
-        y: 9,
+        y: 29,
       },
       {
         x: 'Dec',
-        y: 10,
+        y: 33,
       },
     ],
   },
@@ -62,23 +62,46 @@ const RevenueGrowthChart = () => {
     <ResponsiveLine
       data={data}
       enableArea={true}
+      enablePoints={false}
       areaBlendMode="darken"
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
-      colors={['#9900FF']}
+      colors={['#5ce65c']}
       enableGridX={false} // Disable the x-axis grid lines
       enableGridY={false}
       areaOpacity={0.3}
       enableTouchCrosshair={true} // Enable touch crosshair
-      crosshairType="cross"
+      curve="catmullRom"
       defs={[
         // using helpers (cannot be used with http rendering API)
         // will use color from current element
         patternDotsDef('dots', { color: 'inherit' }),
         // will use background color from current element
-        patternSquaresDef('squares', { background: 'inherit' }),
+        patternSquaresDef('squares-pattern', {
+          size: 7,
+          padding: 1,
+          stagger: true,
+          background: '#ffffff',
+          color: '#2E8B57',
+        }),
+        patternLinesDef('lines-pattern', {
+          spacing: 5,
+          rotation: -8,
+          lineWidth: 2,
+          background: '#ffffff',
+          color: '#68ba7f',
+        }),
         // using plain object
-        { id: 'custom', type: 'patternSquares', size: 24 },
+        {
+          id: 'custom',
+          type: 'patternSquares',
+          size: 10,
+          spacing: 4,
+          rotation: 78,
+          lineWidth: 1,
+          background: '#253d2c',
+          color: '#68ba7f',
+        },
       ]}
       // 2. defining rules to apply those patterns
       fill={[
@@ -91,7 +114,7 @@ const RevenueGrowthChart = () => {
         // match all, will only affect 'elm' because once
         // a rule match, others are skipped
         // (can be used with http rendering API
-        { match: '*', id: 'dots' },
+        { match: '*', id: 'squares-pattern' },
       ]}
       yScale={{
         type: 'linear',
@@ -104,7 +127,7 @@ const RevenueGrowthChart = () => {
         // Extract data for the hovered x-axis value
         const hoveredX = point.data.x as string // The current "x" value (e.g., "Sept")
         const colors = {
-          Monthly: '#9900FF',
+          Monthly: '#5ce65c',
         }
         const valuesForX = data.map((serie) => {
           const match = serie.data.find((d: any) => d.x === hoveredX)

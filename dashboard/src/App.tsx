@@ -7,6 +7,7 @@ import Marimekko from './Marimekko'
 import Choropleth from './Choropleth'
 import ChurnBar from './ChurnBar'
 import RevenueGrowthChart from './ReveneGrowthChart'
+import TopCustomers from './TopCustomers'
 import useFetchData from './useFetchData'
 import { ArrowUpRightIcon, ArrowDownRightIcon } from '@heroicons/react/24/solid'
 import {
@@ -86,6 +87,11 @@ const App = () => {
       chart: <RevenueGrowthChart />,
     },
     {
+      img: NumberedListIcon,
+      header: 'Top Customers',
+      chart: <TopCustomers />,
+    },
+    {
       img: GlobeAsiaAustraliaIcon, // Store the component here - line chart
       header: 'Worldwide Customers',
       chart: <Choropleth />,
@@ -159,7 +165,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className="w-[1000px] space-y-3 p-4">
+      <div className="w-[1000px] min-w-0 space-y-3 p-4">
         <div className="flex w-full justify-between rounded-md p-4 shadow-md">
           <div className="flex flex-col">
             <h5 className="text-lg font-bold text-gray-500">ARR</h5>
@@ -232,7 +238,7 @@ const App = () => {
         {loading ? (
           <p className="text-center">Loading data...</p>
         ) : (
-          <div className="h-96 rounded-md bg-white shadow-md">
+          <div className="h-96 min-w-0 rounded-md bg-white shadow-md">
             {headers[index].chart}
           </div>
         )}
