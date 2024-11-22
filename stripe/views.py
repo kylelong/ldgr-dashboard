@@ -3,74 +3,77 @@ from django.http import JsonResponse
 from django.conf import settings
 import os
 
+# Caculates running ARR  for each month based on yearly & monthly plans
+
 def get_csv_data(request):
     csv_path = os.path.join(settings.BASE_DIR, "stripe/static/data/stripe_payments.csv")
     df = pd.read_csv(csv_path)
     
+    # Convert dates to datetime
     df['start_date'] = pd.to_datetime(df['start_date'])
+    df['end_date'] = pd.to_datetime(df['end_date'])
     
-    # Extract the month and year for grouping
-    df['month'] = df['start_date'].dt.month_name()
-    df['year'] = df['start_date'].dt.year
-    
-
     month_order = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
     ]
     
-    # Group by plan and month, sum the price for each group
-    monthly_data = df[df['plan'] == 'monthly'].groupby(['month', 'year']).agg({'price': 'sum'}).reset_index()
-    yearly_data = df[df['plan'] == 'yearly'].groupby(['month', 'year']).agg({'price': 'sum'}).reset_index()
-
-    # Sort the data by month order
-    monthly_data['month'] = pd.Categorical(monthly_data['month'], categories=month_order, ordered=True)
-    yearly_data['month'] = pd.Categorical(yearly_data['month'], categories=month_order, ordered=True)
-
-    monthly_data = monthly_data.sort_values(['year', 'month'])
-    yearly_data = yearly_data.sort_values(['year', 'month'])
-
-    # Create a dictionary to accumulate ARR for each month
+    # Initialize ARR data structure
     arr_data = {month: {'monthly': 0, 'yearly': 0} for month in month_order}
 
-    # Process monthly data (directly adds price to monthly ARR)
-    for _, row in monthly_data.iterrows():
-        arr_data[row['month']]['monthly'] += row['price']
+    # For each month, calculate total ARR from active subscriptions
+    for month_name in month_order:
+        # Create a date for the first of the current month in 2024
+        current_month = pd.to_datetime(f'2024-{month_order.index(month_name) + 1}-01')
+        
+        # Filter active subscriptions for this month
+        active_monthly = df[
+            (df['plan'] == 'monthly') & 
+            (df['start_date'] <= current_month) & 
+            (df['end_date'] >= current_month)
+        ]
+        
+        active_yearly = df[
+            (df['plan'] == 'yearly') & 
+            (df['start_date'] <= current_month) & 
+            (df['end_date'] >= current_month)
+        ]
+        
+        # Calculate ARR for monthly subscriptions
+        for _, sub in active_monthly.iterrows():
+            duration_days = (sub['end_date'] - sub['start_date']).days
+            daily_rate = sub['price'] / duration_days
+            arr_data[month_name]['monthly'] += daily_rate * 365
+        
+        # Calculate ARR for yearly subscriptions
+        for _, sub in active_yearly.iterrows():
+            arr_data[month_name]['yearly'] += sub['price']
 
-    # Process yearly data (divide the price by 12 for monthly contribution)
-    for _, row in yearly_data.iterrows():
-        arr_data[row['month']]['yearly'] += row['price'] / 12  # Spread yearly price across 12 months
-
-    # Convert the aggregated ARR data into the required structure
+    # Format data for response
     monthly = []
     yearly = []
-
-    # Abbreviate month to 3 letters
     
     for month in month_order:
         monthly.append({
-            'x': month[:3],  
-            'y': round(arr_data[month]['monthly'], 2),
+            'x': month[:3],
+            'y': round(arr_data[month]['monthly'], 2)
         })
         yearly.append({
-            'x': month[:3],  
-            'y': round(arr_data[month]['yearly'], 2),
+            'x': month[:3],
+            'y': round(arr_data[month]['yearly'], 2)
         })
 
-    # Final order 
-    
     data = [
         {
             'id': 'Yearly',
             'color': 'hsl(220, 60%, 40%)',
-            'data': yearly,
+            'data': yearly
         },
         {
             'id': 'Monthly',
             'color': 'hsl(205 100% 50%)',
-            'data': monthly,
-        },
+            'data': monthly
+        }
     ]
 
-    # Return the data as a JSON response
     return JsonResponse(data, safe=False)
