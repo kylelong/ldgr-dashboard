@@ -22,3 +22,4 @@ urlpatterns = [
     path('stripe/', include('stripe.urls')),
     
 ]
+
