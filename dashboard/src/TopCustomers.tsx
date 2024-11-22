@@ -59,7 +59,10 @@ const TopCustomers = () => {
             <div className="flex items-center space-x-5">
               {/* Circle with index */}
               <div
-                className={`${customer.color} flex h-7 w-7 items-center justify-center rounded-full font-bold`}
+                style={{
+                  fontFamily: "'Gaegu', sans-serif",
+                }}
+                className={`${customer.color} flex h-7 w-7 items-center justify-center rounded-full text-2xl font-bold`}
               >
                 {index + 1}
               </div>
