@@ -236,7 +236,16 @@ const App = () => {
           </h3>
         </div>
         {loading ? (
-          <p className="text-center">Loading data...</p>
+          <div className="flex h-96 min-w-0 flex-col items-center justify-center rounded-md bg-white shadow-md">
+            <div className="flex items-center justify-center space-x-2">
+              <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.3s]"></div>
+              <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.13s]"></div>
+              <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500"></div>
+            </div>
+            <p className="text-center font-bold text-gray-600">
+              Loading chart...
+            </p>
+          </div>
         ) : (
           <div className="h-96 min-w-0 rounded-md bg-white shadow-md">
             {headers[index].chart}
