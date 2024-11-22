@@ -1,6 +1,14 @@
+// https://nivo.rocks/line/
+
 import { ResponsiveLine } from '@nivo/line'
 
 const LineChart = ({ data }: { data: any[] }) => {
+  function formatDollarAmount(amount: any) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount)
+  }
   return (
     <ResponsiveLine
       data={data}
@@ -60,7 +68,7 @@ const LineChart = ({ data }: { data: any[] }) => {
                         }}
                         className="h-3 w-3 rounded-full"
                       ></span>
-                      <span className="">${value}</span>
+                      <span className="">{formatDollarAmount(value)}</span>
                     </div>
 
                     <span className="font-semibold text-gray-500">{id}</span>
@@ -73,7 +81,7 @@ const LineChart = ({ data }: { data: any[] }) => {
                 <span
                   className={`h-3 w-3 rounded-full bg-[${colors['Total']}]`}
                 ></span>
-                <span>${total}</span>
+                <span>{formatDollarAmount(total)}</span>
               </div>
               <strong>Total</strong>
             </div>

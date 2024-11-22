@@ -1,3 +1,4 @@
+// https://nivo.rocks/area-bump/
 // install (please try to align the version of installed @nivo packages)
 // yarn add @nivo/bump
 import { ResponsiveAreaBump } from '@nivo/bump'

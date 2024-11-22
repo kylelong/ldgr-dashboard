@@ -1,3 +1,5 @@
+// https://nivo.rocks/choropleth/
+
 // install (please try to align the version of installed @nivo packages)
 // yarn add @nivo/geo
 import { ResponsiveChoropleth } from '@nivo/geo'

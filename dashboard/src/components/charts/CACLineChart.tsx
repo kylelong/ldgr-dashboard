@@ -1,3 +1,5 @@
+// https://nivo.rocks/line/
+
 import { ResponsiveLine } from '@nivo/line'
 import { patternDotsDef, patternSquaresDef } from '@nivo/core'
 const data = [

@@ -1,3 +1,5 @@
+// Custom list of top users
+
 import heart from '@/assets/heart.png'
 const TopCustomers = () => {
   type Customer = {
@@ -57,7 +59,6 @@ const TopCustomers = () => {
         {customers.map((customer, index) => (
           <div key={customer.email} className="my-1 flex w-80 justify-between">
             <div className="flex items-center space-x-5">
-              {/* Circle with index */}
               <div
                 style={{
                   fontFamily: "'Gaegu', sans-serif",
@@ -66,7 +67,7 @@ const TopCustomers = () => {
               >
                 {index + 1}
               </div>
-              {/* Customer name */}
+
               <div>
                 <div className="text-lg">{customer.name}</div>
                 <div className="text-sm">

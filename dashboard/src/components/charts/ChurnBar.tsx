@@ -1,3 +1,5 @@
+// https://nivo.rocks/bar/
+
 import { ResponsiveBar } from '@nivo/bar'
 
 const ChurnBar = () => {
