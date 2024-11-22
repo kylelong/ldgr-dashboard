@@ -1,8 +1,7 @@
 # Ldgr dashboard
 
 ## Background
-During the interview with Kristina she said that learning/brushing up on pandas and creating graph illustration would be a good use of my time between now and the potential time of hopefully joining the Ldgr team. 
-I expanded on one of the interview questions and created an ARR graph with several other graphs in a summary dashboard. 
+During the interview, Kristina said that learning/brushing up on pandas and creating graph illustration would be a good use of my time between now and the potential time of hopefully joining the Ldgr team. This would better ensure that I would hit the ground running. I expanded on one of the interview questions and created an ARR graph with several other graphs in a summary dashboard. 
 
 ## Explanation:
 This is a summary dashboard of key metrics companies, CEOs, Head of Finance, etc care about which are critical to business success. This would offer a quick glance at key metrics before viewing more detailed graphs in another view. 
@@ -18,15 +17,16 @@ This is a summary dashboard of key metrics companies, CEOs, Head of Finance, etc
 - Cash FLow
 - Margins
 
-  The 4 numbers at the top for ARR, Customers, Revenue Growth Rate, and Churn are randomly generated within a realistic range. This simualtes regular live updates that would pull from real client metric data. 
+  The 4 numbers at the top for ARR, Customers, Revenue Growth Rate, and Churn are randomly generated within a realistic range. This simulates regular live updates that would pull from real client metric data. These 4 metrics were chosen as they are some of the most critical to measure business health. 
 
 ## Stack
 - Vite
-- Python (Django)
+- Python (Django, Pandas)
 - React (Typescript)
 - Tailwind
 - [Nivo Rocks](https://nivo.rocks/)
 - [Syntax UI](https://syntaxui.com/)
+- [Number Flow](https://number-flow.barvian.me/) 
 
 ## Screenshots
 
