@@ -17,7 +17,13 @@ This is a summary dashboard of key metrics companies, CEOs, Head of Finance, etc
 - Cash FLow
 - Margins
 
-  The 4 numbers at the top for ARR, Customers, Revenue Growth Rate, and Churn are randomly generated within a realistic range. This simulates regular live updates that would pull from real client metric data. These 4 metrics were chosen as they are some of the most critical to measure business health. 
+  The 4 numbers at the top for ARR, Customers, Revenue Growth Rate, and Churn are randomly generated within a realistic range. This simulates regular live updates that would pull from real client metric data. These 4 metrics were chosen as they are some of the most critical to measure business health.
+
+## ARR
+
+The **`ARR`** graph is the only graph with curated data. The data comes from `stripe/static/data/stripe_payments.csv` and reflects the ARR interview question. Each line in the csv represents a payment that has a `start_date`, `end_date`, `plan` which is `yearly` or `montlhy` and a `price` which is `$4999.99` and `$499.99` respectively. 
+
+`stripe/views.py` calculates the **`ARR`** for each month based on how the yearly and monthly plans contribute to ARR for that month. The csv is ready by and calculations are done with pandas. The function `get_csv_data` returns a JSON object of the  **`ARR`** data which will be called by the frontend. 
 
 ## Stack
 - Vite
@@ -47,3 +53,6 @@ This is a summary dashboard of key metrics companies, CEOs, Head of Finance, etc
 [Kristina Chodorow's and Helena Fogarty's post](https://www.linkedin.com/posts/kchodorow_fundraising-startups-founders-activity-7264056681616097280-mWXO?utm_source=share&utm_medium=member_desktop)
 
 [Mihir Deo's Post](https://www.linkedin.com/posts/mihirdeo_here-are-the-5-key-metrics-every-early-stage-activity-7265370918674145280-tUti?utm_source=share&utm_medium=member_desktop)
+
+## Future
+An important thing to consider is how easily graphs can be interpreted, especially for non-technical people. Kristina mentioned that a surprising learning was how many people in finance are not aware of how to use sql for simple calculations. Having the data may deem worthless or sub-optimal if the data is not easily understood and digestible. 
