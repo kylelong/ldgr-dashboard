@@ -1,5 +1,7 @@
 # Ldgr dashboard
 
+[Ldgr Dashboard](https://ldgr-dashboard-react.onrender.com/)
+
 ## Background
 During the interview, Kristina said that learning/brushing up on pandas and creating graph illustration would be a good use of my time between now and the potential time of hopefully joining the Ldgr team. This would better ensure that I would hit the ground running. I expanded on one of the interview questions and created an ARR graph with several other graphs in a summary dashboard. 
 
@@ -37,14 +39,37 @@ The **`ARR`** graph is the only graph with curated data. The data comes from `st
 ## Screenshots
 
 ![Screen Shot 2024-11-22 at 12 11 54 AM](https://github.com/user-attachments/assets/1bcc56e8-b937-415e-a319-c9084677e4e9)
+### Annual Recurring Revenue
+
 ![Screen Shot 2024-11-21 at 9 27 52 PM](https://github.com/user-attachments/assets/5040092e-cf06-47f5-ad1d-799952055bf7)
+### Churn
+
 ![Screen Shot 2024-11-21 at 9 30 45 PM](https://github.com/user-attachments/assets/de26aef5-0e02-45b9-b5be-7a024be16c1b)
+### Revenue Growth Rate
+
 ![Screen Shot 2024-11-22 at 12 33 14 AM](https://github.com/user-attachments/assets/e57ea091-2411-465b-a332-0cd7b3b18329)
+### Top Customers
+
 ![Screen Shot 2024-11-21 at 9 31 07 PM](https://github.com/user-attachments/assets/dd90ffc5-2a4d-4239-a9af-064f80fc2b1e)
+### Worldwide Customers
+
 ![Screen Shot 2024-11-21 at 9 31 24 PM](https://github.com/user-attachments/assets/136d55ac-cd18-40ae-85c9-2cd00c959d47)
+### Customer Acquisition Cost
+
 ![Screen Shot 2024-11-21 at 9 31 35 PM](https://github.com/user-attachments/assets/b9e01a55-220d-495b-80b0-c429362fbdc7)
+### Expenses 
+
 ![Screen Shot 2024-11-21 at 9 31 54 PM](https://github.com/user-attachments/assets/8935a213-9327-4d1d-8138-25f429b4c026)
+### Cash flow
+
 ![Screen Shot 2024-11-21 at 9 32 06 PM](https://github.com/user-attachments/assets/40e02bd6-0964-44aa-8543-2bfbbc80979f)
+### Margins
+
+## Mobile Screenshots
+![IMG_2697](https://github.com/user-attachments/assets/7f7a0189-270b-4251-86cf-d05478ac4850)
+
+![IMG_154F7BFD0CA7-1](https://github.com/user-attachments/assets/c8b819c2-6e84-4b2c-93a3-6a65da07a2a6)
+
 
 
 
