@@ -178,7 +178,8 @@ const App = () => {
                     $
                   </span>
                   <h5 className="text-sm font-bold sm:text-lg">
-                    <NumberFlow value={numbers.arr} />M
+                    <NumberFlow value={numbers.arr} />
+                    <span>M</span>
                   </h5>
 
                   <div className="ml-1 flex items-center">
