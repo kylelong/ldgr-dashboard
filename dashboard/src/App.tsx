@@ -235,7 +235,7 @@ const App = () => {
             {headers[index].header}
           </h3>
         </div>
-        {loading ? (
+        {index == 0 && loading ? (
           <div className="flex h-96 min-w-0 flex-col items-center justify-center rounded-md bg-white shadow-md">
             <div className="flex items-center justify-center space-x-2">
               <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.3s]"></div>
