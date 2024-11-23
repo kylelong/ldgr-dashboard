@@ -177,7 +177,7 @@ const App = () => {
                   <span className="text-sm font-bold text-green-600 sm:text-lg">
                     $
                   </span>
-                  <h5 className="text-sm font-bold sm:text-lg">
+                  <h5 className="flex items-center text-sm font-bold sm:text-lg">
                     <NumberFlow value={numbers.arr} />
                     <span>M</span>
                   </h5>
@@ -212,8 +212,9 @@ const App = () => {
                 </h5>
                 <div className="flex space-x-2">
                   <div>
-                    <h5 className="text-sm font-bold sm:text-lg">
-                      <NumberFlow value={numbers.growthRate} />%
+                    <h5 className="flex items-center text-sm font-bold sm:text-lg">
+                      <NumberFlow value={numbers.growthRate} />
+                      <span>%</span>
                     </h5>
                   </div>
                   <div className="ml-1 flex items-center">
@@ -228,8 +229,9 @@ const App = () => {
                 </h5>
                 <div className="flex space-x-2">
                   <div className="flex">
-                    <h5 className="text-sm font-bold sm:text-lg">
-                      <NumberFlow value={numbers.churn} />%
+                    <h5 className="flex items-center text-sm font-bold sm:text-lg">
+                      <NumberFlow value={numbers.churn} />
+                      <span>%</span>
                     </h5>
                   </div>
                   <div className="ml-1 flex items-center">
