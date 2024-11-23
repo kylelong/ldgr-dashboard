@@ -1,8 +1,10 @@
 // https://nivo.rocks/line/
 
 import { ResponsiveLine } from '@nivo/line'
+import { useMediaQuery } from 'usehooks-ts'
 
 const LineChart = ({ data }: { data: any[] }) => {
+  const largerScreen = useMediaQuery('(min-width: 768px)')
   function formatDollarAmount(amount: any) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -92,9 +94,9 @@ const LineChart = ({ data }: { data: any[] }) => {
       axisTop={null}
       axisRight={null}
       axisBottom={{
+        tickRotation: largerScreen ? 0 : -45, // Rotate labels at an angle
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
         legend: 'ARR',
         legendOffset: 36,
         legendPosition: 'middle',

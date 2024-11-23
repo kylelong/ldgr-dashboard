@@ -1,8 +1,10 @@
 // https://nivo.rocks/bar/
 
 import { ResponsiveBar } from '@nivo/bar'
+import { useMediaQuery } from 'usehooks-ts'
 
 const ChurnBar = () => {
+  const largerScreen = useMediaQuery('(min-width: 768px)')
   const data = [
     {
       month: 'Jan',
@@ -106,7 +108,7 @@ const ChurnBar = () => {
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: largerScreen ? 0 : -45,
         legend: 'Month',
         legendPosition: 'middle',
         legendOffset: 32,

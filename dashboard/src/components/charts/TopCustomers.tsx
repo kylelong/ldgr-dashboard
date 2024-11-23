@@ -57,7 +57,10 @@ const TopCustomers = () => {
     <div className="relative top-2 flex flex-col items-center">
       <div className="relative flex flex-col justify-start">
         {customers.map((customer, index) => (
-          <div key={customer.email} className="my-1 flex w-96 justify-between">
+          <div
+            key={customer.email}
+            className="my-1 flex w-80 justify-between sm:w-96"
+          >
             <div className="flex items-center space-x-5">
               <div
                 style={{

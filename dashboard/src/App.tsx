@@ -136,7 +136,7 @@ const App = () => {
   }, [index])
 
   return (
-    <div className="flex w-screen flex-col items-center">
+    <div className="flex min-h-screen w-screen flex-col items-center">
       <div className="h-24 w-screen bg-white p-4">
         <div className="flex items-center justify-between">
           <div>
@@ -165,100 +165,114 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className="w-[1000px] min-w-0 space-y-3 p-4">
-        <div className="flex w-full justify-between rounded-md p-4 shadow-md">
-          <div className="flex flex-col">
-            <h5 className="text-lg font-bold text-gray-500">ARR</h5>
-            <div className="flex items-center">
-              <span className="text-lg font-bold text-green-600">$</span>
-              <h5 className="text-lg font-bold">
-                <NumberFlow value={numbers.arr} />M
-              </h5>
+      <div className="flex w-full flex-1 flex-col items-center justify-between">
+        <div className="w-screen flex-grow space-y-3 p-4 lg:w-[1000px]">
+          <div className="flex w-full flex-col items-center space-y-4 rounded-md p-4 shadow-md sm:flex-row sm:items-start sm:space-y-0">
+            <div className="flex w-full justify-between sm:justify-around">
+              <div className="flex flex-col">
+                <h5 className="text-sm font-bold text-gray-500 sm:text-lg">
+                  ARR
+                </h5>
+                <div className="flex items-center">
+                  <span className="text-sm font-bold text-green-600 sm:text-lg">
+                    $
+                  </span>
+                  <h5 className="text-sm font-bold sm:text-lg">
+                    <NumberFlow value={numbers.arr} />M
+                  </h5>
 
-              <div className="ml-1 flex items-center">
-                <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
-                <h5 className="text-sm font-bold text-green-400">8%</h5>
+                  <div className="ml-1 flex items-center">
+                    <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
+                    <h5 className="text-sm font-bold text-green-400">8%</h5>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div>
-            <h5 className="text-lg font-bold text-gray-500">Customers</h5>
-            <div className="flex">
-              <h5 className="text-lg font-bold">
-                <span className="">
-                  <NumberFlow value={numbers.customers} />
-                </span>{' '}
-              </h5>
-              <div className="ml-1 flex items-center">
-                <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
-                <h5 className="text-sm font-bold text-red-400">5%</h5>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h5 className="text-lg font-bold text-gray-500">
-              Revenue Growth Rate
-            </h5>
-            <div className="flex space-x-2">
               <div>
-                <h5 className="text-lg font-bold">
-                  <NumberFlow value={numbers.growthRate} />%
+                <h5 className="text-sm font-bold text-gray-500 sm:text-lg">
+                  Customers
                 </h5>
+                <div className="flex">
+                  <h5 className="text-sm font-bold sm:text-lg">
+                    <span className="">
+                      <NumberFlow value={numbers.customers} />
+                    </span>{' '}
+                  </h5>
+                  <div className="ml-1 flex items-center">
+                    <ArrowDownRightIcon className="h-3 w-3 stroke-red-400" />
+                    <h5 className="text-sm font-bold text-red-400">5%</h5>
+                  </div>
+                </div>
               </div>
-              <div className="ml-1 flex items-center">
-                <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
-                <h5 className="text-sm font-bold text-green-400">32%</h5>
+            </div>
+            <div className="flex w-full justify-between sm:justify-around">
+              <div>
+                <h5 className="text-sm font-bold text-gray-500 sm:text-lg">
+                  Revenue Growth Rate
+                </h5>
+                <div className="flex space-x-2">
+                  <div>
+                    <h5 className="text-sm font-bold sm:text-lg">
+                      <NumberFlow value={numbers.growthRate} />%
+                    </h5>
+                  </div>
+                  <div className="ml-1 flex items-center">
+                    <ArrowUpRightIcon className="h-3 w-3 stroke-green-400" />
+                    <h5 className="text-sm font-bold text-green-400">32%</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <h5 className="text-sm font-bold text-gray-500 sm:text-lg">
+                  Churn
+                </h5>
+                <div className="flex space-x-2">
+                  <div className="flex">
+                    <h5 className="text-sm font-bold sm:text-lg">
+                      <NumberFlow value={numbers.churn} />%
+                    </h5>
+                  </div>
+                  <div className="ml-1 flex items-center">
+                    <ArrowUpRightIcon className="h-3 w-3 stroke-red-400" />
+                    <h5 className="text-sm font-bold text-red-400">1.7%</h5>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col">
-            <h5 className="text-lg font-bold text-gray-500">Churn</h5>
-            <div className="flex space-x-2">
-              <div className="flex">
-                <h5 className="text-lg font-bold">
-                  <NumberFlow value={numbers.churn} />%
-                </h5>
-              </div>
-              <div className="ml-1 flex items-center">
-                <ArrowUpRightIcon className="h-3 w-3 stroke-red-400" />
-                <h5 className="text-sm font-bold text-red-400">1.7%</h5>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="flex items-center justify-center space-x-3">
-          <div className="flex w-12 justify-center rounded-md bg-gray-100 p-2">
-            <IconDisplay icon={headers[index].img} />
-          </div>
-          <h3 className="text-center text-2xl font-bold">
-            {headers[index].header}
-          </h3>
-        </div>
-        {index == 0 && loading ? (
-          <div className="flex h-96 min-w-0 flex-col items-center justify-center rounded-md bg-white shadow-md">
-            <div className="flex items-center justify-center space-x-2">
-              <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.3s]"></div>
-              <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.13s]"></div>
-              <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500"></div>
+          <div className="flex items-center justify-center space-x-3">
+            <div className="flex w-12 justify-center rounded-md bg-gray-100 p-2">
+              <IconDisplay icon={headers[index].img} />
             </div>
-            <p className="text-center font-bold text-gray-600">
-              Loading chart...
-            </p>
+            <h3 className="text-center text-xl font-bold sm:text-2xl">
+              {headers[index].header}
+            </h3>
           </div>
-        ) : (
-          <div className="h-96 min-w-0 rounded-md bg-white shadow-md">
-            {headers[index].chart}
-          </div>
-        )}
-        <div className="flex flex-col items-center">
-          <div className="mt-4">
+          {index == 0 && loading ? (
+            <div className="flex h-96 min-w-0 flex-col items-center justify-center rounded-md bg-white shadow-md">
+              <div className="flex items-center justify-center space-x-2">
+                <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.3s]"></div>
+                <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.13s]"></div>
+                <div className="h-5 w-5 animate-bounce rounded-full bg-blue-500"></div>
+              </div>
+              <p className="text-center font-bold text-gray-600">
+                Loading chart...
+              </p>
+            </div>
+          ) : (
+            <div className="h-96 min-w-0 rounded-md bg-white shadow-md">
+              {headers[index].chart}
+            </div>
+          )}
+
+          <div className="flex justify-center p-3">
             <Pagination currentPage={index} totalDots={TOTAL_PAGES} />
           </div>
-          <div className="mt-2 flex justify-center">
-            <Button text="Prev" action={() => handleClick('prev')} />
-            <Button text="Next" action={() => handleClick('next')} />
-          </div>
+        </div>
+
+        <div className="mt-auto flex w-full justify-center space-x-4 p-10">
+          <Button text="Prev" action={() => handleClick('prev')} />
+          <Button text="Next" action={() => handleClick('next')} />
         </div>
       </div>
     </div>

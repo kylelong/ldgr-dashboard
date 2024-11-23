@@ -2,6 +2,7 @@
 
 import { ResponsiveLine } from '@nivo/line'
 import { patternDotsDef, patternSquaresDef, patternLinesDef } from '@nivo/core'
+import { useMediaQuery } from 'usehooks-ts'
 const data = [
   {
     id: 'Monthly',
@@ -60,6 +61,7 @@ const data = [
 ]
 
 const RevenueGrowthChart = () => {
+  const largerScreen = useMediaQuery('(min-width: 768px)')
   return (
     <ResponsiveLine
       data={data}
@@ -170,9 +172,9 @@ const RevenueGrowthChart = () => {
       axisTop={null}
       axisRight={null}
       axisBottom={{
+        tickRotation: largerScreen ? 0 : -45,
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
         legend: 'Revenue Growth %',
         legendOffset: 36,
         legendPosition: 'middle',

@@ -3,7 +3,7 @@
 // install (please try to align the version of installed @nivo packages)
 // yarn add @nivo/marimekko
 import { ResponsiveMarimekko } from '@nivo/marimekko'
-
+import { useMediaQuery } from 'usehooks-ts'
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
@@ -42,6 +42,7 @@ const data = [
 ]
 
 const Marimekko = () => {
+  const largerScreen = useMediaQuery('(min-width: 768px)')
   return (
     <ResponsiveMarimekko
       data={data}
@@ -74,7 +75,7 @@ const Marimekko = () => {
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: largerScreen ? 0 : -45,
         legend: 'cost',
         legendOffset: 36,
         legendPosition: 'middle',
