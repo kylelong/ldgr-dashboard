@@ -208,7 +208,7 @@ const App = () => {
             <div className="flex w-full justify-between sm:justify-around">
               <div>
                 <h5 className="text-sm font-bold text-gray-500 sm:text-lg">
-                  Revenue
+                  Revenue Growth Rate
                 </h5>
                 <div className="flex space-x-2">
                   <div>

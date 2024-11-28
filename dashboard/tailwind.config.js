@@ -1,6 +1,5 @@
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './dashboard/index.html'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: { extend: {} },
   plugins: [],
-  purge: false,
 }
